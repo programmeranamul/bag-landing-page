@@ -23,7 +23,7 @@ function Content({ data }) {
       duration: 1,
       stagger: { amount: 0.3 },
     });
-  }, []);
+  }, [data]);
   return (
     <div className="order-2 lg:order-1">
       <div>
@@ -37,7 +37,7 @@ function Content({ data }) {
           {data.text}
         </p>
         <div className="relative overflow-hidden p-4 ">
-          <button className=" text cursor-pointer button rounded-2xl outline-none px-8 py-2  font-medium  bg-[#4A6E6A]  md:px-10 md:py-4  ">
+          <button className="button text cursor-pointer rounded-2xl outline-none px-8 py-2  font-medium  bg-[#4A6E6A]  md:px-10 md:py-4  ">
             Shop Now
           </button>
         </div>
