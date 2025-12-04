@@ -12,15 +12,16 @@ function MyCanvas({ data, swatchData, handleSwatchClick }) {
     <div className="order-1 lg:order-2 relative h-3/5 lg:h-full w-full lg:w-1/2">
       <Canvas
         gl={{
-          toneMapping: THREE.ACESFilmicToneMapping, 
+          toneMapping: THREE.ACESFilmicToneMapping,
           outputColorSpace: THREE.SRGBColorSpace,
           antialias: true,
+          alpha: true,
         }}
       >
         <OrbitControls />
         <Environment files="/default.hdr" background={false} />
         <Suspense fallback={null}>
-          <Model data={data} position={[0, -2.2, 0]} scale={0.050} />
+          <Model data={data} position={[0, -2.2, 0]} scale={0.05} />
         </Suspense>
       </Canvas>
       <SwatchWrapper
@@ -28,6 +29,7 @@ function MyCanvas({ data, swatchData, handleSwatchClick }) {
         swatchData={swatchData}
         handleSwatchClick={handleSwatchClick}
       />
+      <div className="highlight w-2/5 h-1/2 bg-[#D7B172] absolute inset-x-40 top-0 -z-10 rounded-br-full rounded-bl-full md:inset-x-60  lg:inset-x-40"></div>
     </div>
   );
 }
