@@ -2,28 +2,26 @@
 
 import React, { Suspense } from "react";
 import SwatchWrapper from "./SwatchWrapper";
-import { Canvas, useThree } from "@react-three/fiber";
-import {
-  Environment,
-  EnvironmentMap,
-  OrbitControls,
-  useGLTF,
-} from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import { Environment, OrbitControls, useGLTF } from "@react-three/drei";
 import { Model } from "./Model";
+import * as THREE from "three";
 
 function MyCanvas({ data, swatchData, handleSwatchClick }) {
-  const bag = useGLTF("/bag.glb");
-  console.log("bag in canvas", bag);
   return (
     <div className="order-1 lg:order-2 relative h-3/5 lg:h-full w-full lg:w-1/2">
-      <Canvas>
+      <Canvas
+        gl={{
+          toneMapping: THREE.ACESFilmicToneMapping, 
+          outputColorSpace: THREE.SRGBColorSpace,
+          antialias: true,
+        }}
+      >
         <OrbitControls />
-        <Environment preset="city" background={false} />
+        <Environment files="/default.hdr" background={false} />
         <Suspense fallback={null}>
-          <Model position={[0, -2.5, 0]} scale={0.065} />
+          <Model data={data} position={[0, -2.2, 0]} scale={0.050} />
         </Suspense>
-
-        {/* <primitive object={bag.scene} position={[0, -30, 0]} scale={0.30} /> */}
       </Canvas>
       <SwatchWrapper
         activeData={data}
